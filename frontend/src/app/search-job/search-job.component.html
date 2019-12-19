@@ -1,0 +1,23 @@
+<!-- Search form -->
+<div style="background-color:green;padding-top:10px;height:60px;">
+	<form class="form-inline" [formGroup]="formdata" (ngSubmit)="onSubmit()" novalidate>
+		<span style="float:left;">
+			<mat-form-field style="padding-left:50px;">
+				<input matInput placeholder="What" ng-model="what"  formControlName="what" autocomplete="off">
+			</mat-form-field>  
+			<mat-form-field style="padding-left:50px;">
+				<input matInput placeholder="Where" ng-model="where" formControlName="where" autocomplete="off">
+			</mat-form-field>
+		</span>
+		<span style="float:left;">
+			<button type="submit" mat-raised-button style="margin-left:50px;margin-top:10px;">Submit</button>
+		</span>
+		<span style="height:10px;float:left;margin-left:20px;margin-top:10px;">
+			
+				<app-spinner ></app-spinner>
+		</span>
+	</form>  
+</div>
+
+
+

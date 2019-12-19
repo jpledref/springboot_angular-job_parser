@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+@import '@angular/material/prebuilt-themes/purple-green.css';
+
+body{
+	background-color:#212121;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: white;
+}

@@ -1,0 +1,15 @@
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%  !important;
+}
+
+.follow-div{
+  margin-top:140px;		
+  width: 100% !important;
+  height:100%;
+}
+
+

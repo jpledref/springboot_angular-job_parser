@@ -1,0 +1,66 @@
+<!--
+<div *ngFor="let job of jobs" style="border:solid black 1px;padding:10px;" ng-class="flashback" >
+  <div style="font-weight:bold;font-size:1.4em;text-decoration: underline;margin-top:5px;">
+	<a href="{{job.link}}" target="_blank">{{job.title}}</a>
+  </div>
+  <div style="margin-left:20px;">
+	  <div style="margin-top:5px;">{{job.description}}</div>
+	    <table style="text-align:left;">
+		<tr>
+			<td><b>Entreprise:</b></td>
+			<td>{{job.enterprise}}</td>
+		</tr>
+		<tr>
+			<td><b>Salaire:</b></td>
+			<td>{{job.salary}}</td>
+		</tr>
+		<tr>
+			<td><b>Source:</b></td>
+			<td>{{job.siteSource}}</td>
+		</tr>
+		<tr>
+			<td><b>Lieu:</b></td>
+			<td>{{job.location}}</td>
+		</tr>
+	    </table>
+    </div>    
+</div>-->
+<div >
+
+ <table mat-table [dataSource]="jobs" matSort style="width: 100%;">    
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Titre </th>
+      <td mat-cell *matCellDef="let job"> 
+	<div style="font-weight:bold;font-size:1.2em;text-decoration: underline;">
+		<a href="{{job.link}}" target="_blank">{{job.title}}</a>
+	</div>      
+      </td>
+    </ng-container>    
+    <ng-container matColumnDef="enterprise">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Enterprise </th>
+      <td mat-cell *matCellDef="let job"> {{job.enterprise}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let job"> {{job.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="siteSource">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
+      <td mat-cell *matCellDef="let job" > {{job.siteSource}} </td>
+    </ng-container>
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Lieu </th>
+      <td mat-cell *matCellDef="let job" > {{job.location}} </td>
+    </ng-container>
+    <ng-container matColumnDef="salary">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> R&eacute;mun&eacute;ration </th>
+      <td mat-cell *matCellDef="let job" > {{job.salary}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>
+    <tr mat-row *matRowDef="let job; columns: displayedColumns;"></tr>
+  </table>
+
+
+</div>
+
