@@ -1,6 +1,8 @@
 package com.shcompany.job.parser;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -61,7 +63,7 @@ public class SearchController {
 	private List<SearchResult> doSearch(@RequestParam(required = true,defaultValue = "informatique") String what,@RequestParam(required = true,defaultValue ="lyon") String where){	
 		List<SearchResult> ret=new ArrayList<SearchResult>();		
 		List<Definition> definitions=definitionDAO.findAll();
-		
+
 		definitions.stream().forEach(s->{
 			SearchResult a=new SearchResult();
 			
@@ -72,7 +74,7 @@ public class SearchController {
 				Criterea c=mapCrit.get("what");
 				
 				url.append("&").append(c.getValue())
-				 .append("=").append(what);				
+				 .append("=").append(URLEncoder.encode(what));				
 			}
 			
 			if(where!=null&where!=""&mapCrit.containsKey("where")){
@@ -81,10 +83,10 @@ public class SearchController {
 				//Dirty fix for APEC
 				if(!c.getValue().contains("=")){
 					url.append("&").append(c.getValue())
-					 .append("=").append(where);
+					 .append("=").append(URLEncoder.encode(where));
 				}
 				else{
-					url.append("&").append(c.getValue());
+					url.append("&").append(URLEncoder.encode(c.getValue()));
 				}						
 			}			
 			
