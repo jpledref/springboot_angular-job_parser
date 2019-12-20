@@ -18,8 +18,8 @@ export class SearchJobComponent implements OnInit {
 		this.onSubmit();
 	}
 	  
-	onSubmit(){		
-		this.apiService.getJobsWithParam(this.formdata);
+	onSubmit(){
+		this.apiService.getJobsWithParam(this.formdata.value);
 	}
 
 	initForm() {
