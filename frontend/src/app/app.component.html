@@ -1,25 +1,29 @@
-<div class="fixed-header">	
-	<mat-toolbar >
-		<span>SpringBoot Angular Job Board Parser</span>		
-	</mat-toolbar>
-	<app-search-job></app-search-job> 
-</div>
+<ng-container >
+	<mat-toolbar class="example-header">
+		<mat-toolbar-row>
+			SpringBoot Angular Job Board Parser
+		</mat-toolbar-row>
+	</mat-toolbar>		
+			
+	<app-search-job class="example-header2" ></app-search-job>		
+	
+	<mat-sidenav-container class="example-container">	 
+	    <mat-sidenav mode="side" opened class="example-sidenav" [fixedTopGap]="140" [fixedInViewport]="true" style="padding-left:0px;">
+		<app-chart-pie></app-chart-pie>      
+	    </mat-sidenav>
+	    <mat-sidenav-content>
+			<app-jobs></app-jobs>  
+	    </mat-sidenav-content>	    
+	</mat-sidenav-container>	
+</ng-container>
 
-<div class="follow-div">	
-<mat-drawer-container class="example-container" style="width:100%;"> 
-  <mat-drawer-content>
-  
-	<div class="">
-		<app-jobs></app-jobs>  
-	</div>
-  
-  
-  </mat-drawer-content>
-   <mat-drawer mode="side" opened style="width:250px;">
-   
-   </mat-drawer>
-</mat-drawer-container>
-</div>
+
+
+
+
+
+
+
 
 
 

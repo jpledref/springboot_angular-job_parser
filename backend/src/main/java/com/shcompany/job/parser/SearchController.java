@@ -2,8 +2,13 @@ package com.shcompany.job.parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shcompany.job.parser.dao.DefinitionDAO;
 import com.shcompany.job.parser.definition.model.Criterea;
 import com.shcompany.job.parser.definition.model.Definition;
+import com.shcompany.job.parser.model.Chart;
+import com.shcompany.job.parser.model.ChartWrapper;
 import com.shcompany.job.parser.model.Job;
+import com.shcompany.job.parser.model.JobWrapper;
 import com.shcompany.job.parser.model.SearchResult;
 
 @RestController
@@ -29,13 +37,20 @@ public class SearchController {
 	@RequestMapping(value = "/jobs",
 			produces = { "application/json" }, 
 			method = RequestMethod.GET)
-	private List<Job> getSearchJob(@RequestParam(required = true,defaultValue = "informatique") String what,@RequestParam(required = true,defaultValue ="lyon") String where){
-		List<Job> ret=new ArrayList<Job>();			
+	private JobWrapper getSearchJob(@RequestParam(required = true,defaultValue = "informatique") String what,@RequestParam(required = true,defaultValue ="lyon") String where){
+		JobWrapper ret=new JobWrapper();
+		
 		List<SearchResult> listSR=doSearch(what,where);		
 		
+		//Jobs
+		List<Job> listJob=new ArrayList<Job>();			
 		listSR.stream().forEach(s->{			
-			ret.addAll(s.getJobs());			
-		});
+			listJob.addAll(s.getJobs());			
+		});		
+		ret.setJobs(listJob);
+		
+		//Extracting charts
+		ret.setCharts(buildChartWrapper(listJob));		
 		
 		return ret;
 	}
@@ -70,8 +85,7 @@ public class SearchController {
 				}
 				else{
 					url.append("&").append(c.getValue());
-				}
-						
+				}						
 			}			
 			
 			Elements res=null;
@@ -125,6 +139,29 @@ public class SearchController {
 		}				
 		return ret;
 	}	
+	
+	private ChartWrapper buildChartWrapper(List<Job> jobs){
+		ChartWrapper ret=new ChartWrapper();
+		
+		//Pie
+		Chart pie=new Chart();
+		List<Object> values=new LinkedList<Object>();
+		Set<String> labels=new LinkedHashSet<String>();
+		Map<String, Long> counted = jobs.stream()
+	            .collect(Collectors.groupingBy(Job::getSiteSource, Collectors.counting()));
+		counted.entrySet().stream().forEach(kv->{		
+			labels.add(kv.getKey());			
+			values.add(kv.getValue());		
+		});		
+		pie.setLabels(labels);
+		pie.setValues(values);
+		ret.setPie(pie);
+		
+		
+		return ret;
+	}
+	
+	
 	
 	private String getValOrEmpty(Element e,Definition d, String selector) {			
 		return d.getMapSelectors().containsKey(selector)&&!d.getMapSelectors().get(selector).getValue().equals("")

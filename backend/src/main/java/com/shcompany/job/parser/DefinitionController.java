@@ -11,7 +11,6 @@ import com.shcompany.job.parser.dao.DefinitionDAO;
 import com.shcompany.job.parser.definition.model.Definition;
 
 @RestController
-//@RequestMapping(value="/info")
 public class DefinitionController {
 	
 	@Autowired

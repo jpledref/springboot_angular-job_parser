@@ -1,9 +1,7 @@
-<div *ngIf="isWorking">
-	<mat-progress-spinner 	
-		class="example-margin"
-		[diameter]="40"
-		[color]="color"
-		[mode]="mode"
-		[value]="value">
-	</mat-progress-spinner>
-</div>
+<mat-progress-spinner  [style.visibility]="isWorking ? 'visible' : 'hidden'" style=""	
+	[diameter]="40"
+	[color]="color"
+	[mode]="mode"
+	[value]="value">
+</mat-progress-spinner>
+

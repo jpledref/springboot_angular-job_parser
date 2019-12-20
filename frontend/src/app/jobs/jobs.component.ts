@@ -15,9 +15,9 @@ export class JobsComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {	  
-	this.apiService.change.subscribe(data=>{
-		console.log(data);
-		this.jobs=data;
+	this.apiService.change.subscribe(data=>{		
+		this.jobs=data.jobs;
+		//console.log(this.jobs);
 	});		
   }
   

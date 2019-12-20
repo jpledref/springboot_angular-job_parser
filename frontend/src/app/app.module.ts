@@ -15,14 +15,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SpinnerComponent } from './spinner/spinner.component'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
-import {MatTableModule} from '@angular/material/table'; 
+import {MatTableModule} from '@angular/material/table';
+import { ChartPieComponent } from './chart-pie/chart-pie.component'; 
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     JobsComponent,
     SearchJobComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ChartPieComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
