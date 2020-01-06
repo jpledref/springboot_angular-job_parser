@@ -4,6 +4,7 @@
 
 body{
 	background-color:#212121;
+	overflow:hidden;
 }
 
 a:link, a:visited {
@@ -11,42 +12,34 @@ a:link, a:visited {
   color: white;
 }
 
-.example-container {
-  position: absolute;
-  top: 132px;
-  bottom: 60px;
-  left: 0;
-  right: 0;
+mat-toolbar {
+  position: relative;
+  z-index: 0;
 }
 
-.example-sidenav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
+@media screen and (min-width: 960px) {
+  mat-toolbar {
+     z-index: 50;
+  }
 }
 
-.example-header {
-  z-index:3;	
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+@media screen and (max-width: 599px) {
+  mat-toolbar {
+     z-index: 0;
+  }
 }
 
-.example-header2 {
-  z-index:3;	
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
+@media screen and (max-width: 599px) {
+    .main-sidenav-container {
+        width: 100%;
+        height: calc(100vh - 135px);
+        z-index: 100;
+    }
 }
 
-.example-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+@media screen and (min-width: 600px) {
+  .main-sidenav-container {
+      width: 100%;
+      height: calc(100vh - 135px);
+  }
 }
-
-

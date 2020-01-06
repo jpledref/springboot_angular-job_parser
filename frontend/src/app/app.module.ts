@@ -19,6 +19,7 @@ import { MatTableModule} from '@angular/material/table';
 import { ChartPieComponent } from './chart-pie/chart-pie.component'; 
 import { ChartsModule } from 'ng2-charts';
 import {MatSortModule} from '@angular/material/sort';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {MatSortModule} from '@angular/material/sort';
     ChartPieComponent
   ],
   imports: [
+    FlexLayoutModule,
     BrowserModule,
     HttpClientModule,
     MatIconModule,	

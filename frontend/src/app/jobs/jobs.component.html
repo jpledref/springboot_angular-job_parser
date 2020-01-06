@@ -1,5 +1,5 @@
 <div>
- <table mat-table [dataSource]="jobs" matSort [matSortActive]="sort.active" [matSortDirection]="sort.direction" style="width: 100%;" (matSortChange)="sortData($event)">    
+ <table mat-table [dataSource]="jobs" matSort [matSortActive]="sort.active" [matSortDirection]="sort.direction" style="width:100%;" (matSortChange)="sortData($event)">    
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Titre </th>
       <td mat-cell *matCellDef="let job"> 
@@ -9,24 +9,24 @@
       </td>
     </ng-container>    
     <ng-container matColumnDef="enterprise">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Enterprise </th>
-      <td mat-cell *matCellDef="let job"> {{job.enterprise}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-md="true"> Enterprise </th>
+      <td mat-cell *matCellDef="let job" fxHide.lt-md="true"> {{job.enterprise}} </td>
     </ng-container>
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-      <td mat-cell *matCellDef="let job"> {{job.description}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-md="true"> Description </th>
+      <td mat-cell *matCellDef="let job" fxHide.lt-md="true"> {{job.description}} </td>
     </ng-container>
     <ng-container matColumnDef="siteSource">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
-      <td mat-cell *matCellDef="let job" > {{job.siteSource}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-md="true"> Source </th>
+      <td mat-cell *matCellDef="let job" fxHide.lt-md="true"> {{job.siteSource}} </td>
     </ng-container>
     <ng-container matColumnDef="location">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Lieu </th>
-      <td mat-cell *matCellDef="let job" > {{job.location}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-md="true"> Lieu </th>
+      <td mat-cell *matCellDef="let job" fxHide.lt-md="true" > {{job.location}} </td>
     </ng-container>
     <ng-container matColumnDef="salary">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> R&eacute;mun&eacute;ration </th>
-      <td mat-cell *matCellDef="let job" > {{job.salary}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-md="true"> R&eacute;mun&eacute;ration </th>
+      <td mat-cell *matCellDef="let job" fxHide.lt-md="true"> {{job.salary}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>

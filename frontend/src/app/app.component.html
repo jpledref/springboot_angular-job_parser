@@ -1,22 +1,24 @@
+<div style="position:absolute; top:0; bottom:0; left:0; right: 0; display: flex; flex-direction: column;">  
 <ng-container >
-	<mat-toolbar class="example-header">
+	<mat-toolbar  class="mat-elevation-z6">
 		<mat-toolbar-row>
 			SpringBoot Angular Job Board Parser
 		</mat-toolbar-row>
 	</mat-toolbar>		
 			
-	<app-search-job class="example-header2" ></app-search-job>		
+	<app-search-job ></app-search-job>	
 	
-	<mat-sidenav-container class="example-container">	 
-	    <mat-sidenav mode="side" opened class="example-sidenav" [fixedTopGap]="140" [fixedInViewport]="true" style="padding-left:0px;">
-		<app-chart-pie></app-chart-pie>      
-	    </mat-sidenav>
-	    <mat-sidenav-content>
-			<app-jobs></app-jobs>  
-	    </mat-sidenav-content>	    
-	</mat-sidenav-container>	
+	<div class="main-sidenav-container" style="">
+		<div fxFlex="15%" fxFlex.lt-md="100%" style="background-color:#424242;border-right: solid 1px rgba(255,255,255,.12);" fxFlexOrder.lt-md="2" fxHide.lt-md="true">
+			<app-chart-pie></app-chart-pie>  
+		</div>
+		<div fxFlex="85%" fxFlex.lt-md="100%" style="overflow-y: scroll;" >
+			<app-jobs></app-jobs>  		
+		</div>	
+	</div>
+	
 </ng-container>
-
+</div>
 
 
 

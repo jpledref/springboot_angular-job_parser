@@ -1,17 +1,26 @@
 <!-- Search form -->
 <div style="background-color:green;width:100%;padding-top:10px;padding-left:40px;">
-	<form class="form-inline" [formGroup]="formdata" (ngSubmit)="onSubmit()" novalidate>		
-		<mat-form-field style="">
-			<input matInput placeholder="What" ng-model="what"  formControlName="what" autocomplete="off">
-		</mat-form-field>  
-		<mat-form-field style="margin-left:20px;">
-			<input matInput placeholder="Where" ng-model="where" formControlName="where" autocomplete="off">
-		</mat-form-field>	
-		
-		<button type="submit" mat-raised-button style="margin-left:20px;">Submit</button>	
-		<div style="position:absolute;display:inline-block;margin-left:20px;margin-top:10px;">				
-			<app-spinner style="display:inline-flex;"></app-spinner>		
-		</div>
+	<form class="" [formGroup]="formdata" (ngSubmit)="onSubmit()" novalidate>			
+		<div fxLayout="row" fxLayoutAlign="start center" style="" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start none" >
+			<div fxFlex="10%" fxFlex.lt-md="100%">
+				<mat-form-field style="" >
+					<input matInput placeholder="What" ng-model="what"  formControlName="what" autocomplete="off" >
+				</mat-form-field>
+			</div>
+			<div fxFlex="10%" fxFlex.lt-md="100%">
+				<mat-form-field style="" >
+					<input matInput placeholder="Where" ng-model="where" formControlName="where" autocomplete="off" >
+				</mat-form-field>
+			</div>
+			<div>
+				<button type="submit" mat-raised-button style="margin-left:20px;">Submit</button>	
+			</div>
+			<div>
+				<div style="margin-left:20px;">				
+					<app-spinner style="display:inline-flex;"></app-spinner>		
+				</div>
+			</div>
+		</div>		
 	</form>  
 </div>
 
