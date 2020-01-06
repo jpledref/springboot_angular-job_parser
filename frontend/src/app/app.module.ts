@@ -12,12 +12,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule} from '@angular/material/sidenav';
 import { SpinnerComponent } from './spinner/spinner.component'; 
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
-import {MatTableModule} from '@angular/material/table';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import { MatTableModule} from '@angular/material/table';
 import { ChartPieComponent } from './chart-pie/chart-pie.component'; 
 import { ChartsModule } from 'ng2-charts';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ChartsModule } from 'ng2-charts';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    ChartsModule
+    ChartsModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

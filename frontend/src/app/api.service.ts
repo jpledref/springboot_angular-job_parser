@@ -28,13 +28,10 @@ workingEvent= new EventEmitter<Boolean>();
 	var backend= "";   
 	if(port=="4200"){
 		backend="http://localhost";
-	}   
-	//console.log(data.value) ; 
+	}  
 	this.change.emit({"jobs":[],"charts":{"pie":{"values":[],"labels":[]}}});
 	this.workingEvent.emit(true);
 	this.httpClient.get(backend+'/jobs', { params: data}).subscribe((data)=>{
-	      //console.log(data);
-	      //this.jobs = data.jobs;		
 	      this.change.emit(data);	      
 	      this.workingEvent.emit(false);	
 	    });
