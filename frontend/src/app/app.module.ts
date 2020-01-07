@@ -20,6 +20,7 @@ import { ChartPieComponent } from './chart-pie/chart-pie.component';
 import { ChartsModule } from 'ng2-charts';
 import {MatSortModule} from '@angular/material/sort';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { BignumberComponent } from './bignumber/bignumber.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     JobsComponent,
     SearchJobComponent,
     SpinnerComponent,
-    ChartPieComponent
+    ChartPieComponent,
+    BignumberComponent
   ],
   imports: [
     FlexLayoutModule,

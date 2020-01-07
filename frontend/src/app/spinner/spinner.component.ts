@@ -8,7 +8,7 @@ import { ApiService } from '../api.service';
 })
 export class SpinnerComponent implements OnInit {
   
-  color = 'primary';
+  color = 'warn';
   mode = 'indeterminate';
   value = 50;
   isWorking=false;	

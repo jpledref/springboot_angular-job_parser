@@ -2,15 +2,21 @@
 <ng-container >
 	<mat-toolbar  class="mat-elevation-z6">
 		<mat-toolbar-row>
-			SpringBoot Angular Job Board Parser
+			<img src="assets/img/logo.png" alt="my job board" style="height:50px;padding-right:10px;"/>
+			<a href="/" style="text-decoration:none;">
+				<span>				
+				<span style="color:#AA0000;">M</span>y <span style="color:#AA0000;">J</span>ob <span style="color:#AA0000;">B</span>oard<span style="font-size:0.6em;color:#AA0000;font-variant-position:sub;">.mine.nu</span>
+				</span>
+			</a>
 		</mat-toolbar-row>
 	</mat-toolbar>		
 			
 	<app-search-job ></app-search-job>	
 	
 	<div class="main-sidenav-container" style="">
-		<div fxFlex="15%" fxFlex.lt-md="100%" style="background-color:#424242;border-right: solid 1px rgba(255,255,255,.12);" fxFlexOrder.lt-md="2" fxHide.lt-md="true">
-			<app-chart-pie></app-chart-pie>  
+		<div id="leftNav" fxFlex="15%" fxFlex.lt-md="100%" style="" fxFlexOrder.lt-md="2" fxHide.lt-md="true">
+			<app-chart-pie></app-chart-pie>
+			<app-bignumber></app-bignumber>	
 		</div>
 		<div fxFlex="85%" fxFlex.lt-md="100%" style="overflow-y: scroll;" >
 			<app-jobs></app-jobs>  		

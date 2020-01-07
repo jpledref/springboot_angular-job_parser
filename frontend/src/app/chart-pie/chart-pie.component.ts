@@ -15,7 +15,7 @@ export class ChartPieComponent implements OnInit {
 	    responsive: true,
 	    legend: {
 		    labels: {
-			"fontColor": "white"
+			"fontColor": "#000"
 		    }
 		}
 	  };	
@@ -27,7 +27,7 @@ export class ChartPieComponent implements OnInit {
 	public pieChartPlugins = [];	
 	public pieChartColors = [{
 		"backgroundColor": this.coloR,
-		"fontColor":"white"
+		"fontColor":"#000"
 	}];
 
 	constructor(private apiService: ApiService) { 
@@ -35,9 +35,12 @@ export class ChartPieComponent implements OnInit {
 			this.pieChartLabels=data.charts.pie.labels;	
 			this.pieChartData=data.charts.pie.values;
 			this.coloR=[];
+			var n=0;
 			for(var i in this.pieChartLabels){
-				this.coloR.push(dynamicColors());
+				//this.coloR.push(dynamicColors());
+				this.coloR.push(redColors(n));
 				this.pieChartColors[0].backgroundColor=this.coloR;
+				n++;
 			}
 		}); 		  
 	}
@@ -50,8 +53,18 @@ export class ChartPieComponent implements OnInit {
 }
 
 function dynamicColors() {
-            var r = Math.floor(Math.random() * 255);
-            var g = Math.floor(Math.random() * 255);
-            var b = Math.floor(Math.random() * 255);
-            return "rgba(" + r + "," + g + "," + b + ",1)";
-         };
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgba(" + r + "," + g + "," + b + ",1)";
+};
+
+function redColors(n){
+    var x = 0 + 50*n;	
+    var r = 240;
+    var g = x;
+    var b = x;
+    return "rgba(" + r + "," + g + "," + b + ",1)";
+}
+
+
