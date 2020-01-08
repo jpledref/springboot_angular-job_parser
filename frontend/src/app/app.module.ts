@@ -21,6 +21,7 @@ import { ChartsModule } from 'ng2-charts';
 import {MatSortModule} from '@angular/material/sort';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BignumberComponent } from './bignumber/bignumber.component';
+import { ConfigloaderService } from './configloader.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { BignumberComponent } from './bignumber/bignumber.component';
     ChartsModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [ConfigloaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

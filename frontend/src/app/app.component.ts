@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigloaderService } from './configloader.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular-Job-Parser';
+	
+	constructor(configloaderService: ConfigloaderService) {
+		configloaderService.init();
+		
+	}
+	
+	
+	
 }

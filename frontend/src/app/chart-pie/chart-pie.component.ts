@@ -18,7 +18,7 @@ export class ChartPieComponent implements OnInit {
 			"fontColor": "#000"
 		    }
 		}
-	  };	
+	};	
 	
 	public pieChartLabels: Label[] = [];
 	public pieChartData: SingleDataSet = [];
@@ -42,7 +42,27 @@ export class ChartPieComponent implements OnInit {
 				this.pieChartColors[0].backgroundColor=this.coloR;
 				n++;
 			}
-		}); 		  
+		}); 	
+
+		this.apiService.append.subscribe(data=>{	
+			var label="";
+			var nb=data.jobs.length;
+			if(data.jobs[0]!=null)label=data.jobs[0].siteSource;
+			
+			if(nb!=0){
+				this.pieChartLabels.push(label);	
+				this.pieChartData.push(nb);
+				this.coloR=[];
+				var n=0;
+				for(var i in this.pieChartLabels){
+					this.coloR.push(redColors(n));
+					this.pieChartColors[0].backgroundColor=this.coloR;
+					n++;
+				}
+			}
+		}); 	
+
+		
 	}
 
 	  ngOnInit() {

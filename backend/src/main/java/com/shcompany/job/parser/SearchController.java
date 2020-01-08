@@ -15,6 +15,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,8 @@ import com.shcompany.job.parser.model.SearchResult;
 
 @RestController
 public class SearchController {
+	Logger LOG = LoggerFactory.getLogger(SearchController.class);
+	
 	
 	@Autowired
     private DefinitionDAO definitionDAO;		
@@ -127,7 +131,7 @@ public class SearchController {
 		}
 		long stopTime = System.currentTimeMillis();
 	    long elapsedTime = stopTime - startTime;
-	    System.out.println("Execution time:"+elapsedTime+" for "+ url.toString());
+	    LOG.debug("Execution time:"+elapsedTime+" for "+ url.toString());
 		
 		ret.setUrl(url.toString());
 		ret.setResultHtml(res!=null?res.html().toString():"");			

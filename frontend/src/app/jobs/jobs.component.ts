@@ -24,7 +24,19 @@ export class JobsComponent implements OnInit {
 		this.jobs=data.jobs;
 		this.defJobs=data.jobs;
 		this.sortData(this.sort);
+	});
+
+	this.apiService.append.subscribe(data=>{		
+		var resultArray = this.jobs;
+		data.jobs.forEach(function(obj, index){
+		  resultArray.push(data.jobs[index]);
+		});
+		
+		this.jobs=resultArray;
+		this.defJobs=resultArray;
+		this.sortData(this.sort);
 	});	
+	
   }
   
    sortData(sort: Sort) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { ConfigloaderService } from '../configloader.service';
 
 @Component({
   selector: 'app-search-job',
@@ -11,15 +12,18 @@ export class SearchJobComponent implements OnInit {
 
 	formdata: FormGroup;
 
-	constructor(private formBuilder: FormBuilder,private apiService: ApiService	) { }
+	constructor(private formBuilder: FormBuilder,private apiService: ApiService,private configloaderService: ConfigloaderService	) { }
 
 	ngOnInit() {
-		this.initForm();	
-		this.onSubmit();
+		this.initForm();			
+		
+		this.configloaderService.loaded.subscribe(data=>{	
+			this.onSubmit();
+		});		
 	}
 	  
 	onSubmit(){
-		this.apiService.getJobsWithParam(this.formdata.value);
+		this.apiService.getJobsWithParamLazy(this.formdata.value);
 	}
 
 	initForm() {

@@ -13,6 +13,10 @@ export class BignumberComponent implements OnInit {
 	this.apiService.change.subscribe(data=>{	
 		this.numberFound=Object.keys(data.jobs).length;	
 	}); 	
+	
+	this.apiService.append.subscribe(data=>{	
+		this.numberFound+=Object.keys(data.jobs).length;	
+	}); 	
   }
 
   ngOnInit() {
