@@ -7,4 +7,5 @@ import com.shcompany.job.parser.definition.model.Definition;
 public interface DefinitionDAO {
 	public List<Definition> findAll();
 	public void save(List<Definition> list);
+	public Definition findByName(String name);
 }

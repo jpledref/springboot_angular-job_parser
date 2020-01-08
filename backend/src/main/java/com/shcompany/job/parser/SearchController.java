@@ -16,6 +16,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,46 +66,73 @@ public class SearchController {
 		List<Definition> definitions=definitionDAO.findAll();
 
 		definitions.stream().forEach(s->{
-			SearchResult a=new SearchResult();
-			
-			StringBuilder url=new StringBuilder(s.getSearch());			
-			Map<String, Criterea> mapCrit=s.getMapCritereas();				
-			
-			if(what!=null&what!=""&mapCrit.containsKey("what")){
-				Criterea c=mapCrit.get("what");
-				
-				url.append("&").append(c.getValue())
-				 .append("=").append(URLEncoder.encode(what));				
-			}
-			
-			if(where!=null&where!=""&mapCrit.containsKey("where")){
-				Criterea c=mapCrit.get("where");
-				
-				//Dirty fix for APEC
-				if(!c.getValue().contains("=")){
-					url.append("&").append(c.getValue())
-					 .append("=").append(URLEncoder.encode(where));
-				}
-				else{
-					url.append("&").append(URLEncoder.encode(c.getValue()));
-				}						
-			}			
-			
-			Elements res=null;
-			try {
-				Document doc = Jsoup.connect(url.toString()).get();
-				res=doc.select(s.getCssListSelector());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			a.setUrl(url.toString());
-			a.setResultHtml(res.html().toString());			
-			a.setResultText(res.text());			
-			a.setJobs(processHTML(s,a));			
-			
+			SearchResult a=parseByDefinition(s,what,where);					
 			ret.add(a);
 		});
+		
+		return ret;
+	}
+	
+	@RequestMapping(value = "/search/{name}",
+			produces = { "application/json" }, 
+			method = RequestMethod.GET)
+	private SearchResult doSearchByName(@PathVariable(required = true) String name,@RequestParam(required = true,defaultValue = "informatique") String what,@RequestParam(required = true,defaultValue ="lyon") String where){	
+		SearchResult ret=new SearchResult();		
+		Definition definition=definitionDAO.findByName(name);
+
+		if(definition!=null){
+			ret=parseByDefinition(definition,what,where);			
+		}
+		
+		return ret;
+	}
+	
+	private SearchResult parseByDefinition(Definition d,String what,String where){
+		SearchResult ret=new SearchResult();
+		
+		long startTime = System.currentTimeMillis();
+		
+		StringBuilder url=new StringBuilder(d.getSearch());			
+		Map<String, Criterea> mapCrit=d.getMapCritereas();				
+		
+		if(what!=null&what!=""&mapCrit.containsKey("what")){
+			Criterea c=mapCrit.get("what");
+			
+			url.append("&").append(c.getValue())
+			 .append("=").append(URLEncoder.encode(what));				
+		}
+		
+		if(where!=null&where!=""&mapCrit.containsKey("where")){
+			Criterea c=mapCrit.get("where");
+			
+			//Dirty fix for APEC
+			if(!c.getValue().contains("=")){
+				url.append("&").append(c.getValue())
+				 .append("=").append(URLEncoder.encode(where));
+			}
+			else{
+				url.append("&").append(URLEncoder.encode(c.getValue()));
+			}						
+		}			
+		
+		Elements res=null;
+		try {
+			Document doc = Jsoup
+					.connect(url.toString())
+					.userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
+					.get();
+			res=doc.select(d.getCssListSelector());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		long stopTime = System.currentTimeMillis();
+	    long elapsedTime = stopTime - startTime;
+	    System.out.println("Execution time:"+elapsedTime+" for "+ url.toString());
+		
+		ret.setUrl(url.toString());
+		ret.setResultHtml(res!=null?res.html().toString():"");			
+		ret.setResultText(res!=null?res.text():"");			
+		ret.setJobs(processHTML(d,ret));	
 		
 		return ret;
 	}

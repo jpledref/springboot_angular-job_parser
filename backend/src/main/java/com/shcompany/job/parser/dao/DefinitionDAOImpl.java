@@ -30,4 +30,9 @@ public class DefinitionDAOImpl implements DefinitionDAO {
 		definitions=list;
 	}
 
+	@Override
+	public Definition findByName(String name) {		
+		return definitions.stream().filter(e->{return (e.getName().equals(name))?true:false;}).findFirst().get();
+	}
+
 }
