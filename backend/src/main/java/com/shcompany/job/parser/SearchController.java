@@ -168,7 +168,7 @@ public class SearchController {
 				}
 				res.setLink(url);
 				
-				ret.add(res);				
+				if(res.getTitle()!=null&&!res.getTitle().equals(""))ret.add(res);				
 			});
 		}				
 		return ret;
