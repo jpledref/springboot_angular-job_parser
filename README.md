@@ -33,8 +33,10 @@ Springboot_angular-job_parser is an application whose purpose is to aggregate se
 - [ ] images for job boards 
 - [ ] home page with photo
 - [ ] gps city
-- [ ] https
+- [x] https
+- [x] https redirect
 - [x] lazy loading
+- [ ] slogan
 
 
 
