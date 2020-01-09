@@ -15,10 +15,11 @@ Springboot_angular-job_parser is an application whose purpose is to aggregate se
                      |           |              |           |
                      +-----------+              +-----------+
 ```
-![screenshot](meta\img\screenshot.png)
+![screenshot](meta/img/screenshot.png)
 
 
-## TODO
+
+## Road to v1
 
 - [x] responsive
 - [ ] reactive
