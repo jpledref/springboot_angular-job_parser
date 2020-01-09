@@ -18,36 +18,44 @@ workingEvent= new EventEmitter<Boolean>();
 	
   jobs;
   names;
+  isWorking=false;
 	
   constructor(private httpClient: HttpClient,private configloaderService: ConfigloaderService) {}
   
     public getJobsWithParam(data){
+	if(this.isWorking)return;   
 	var port = window.location.port;  
 	var backend= "";   
 	if(port=="4200"){
 		backend="http://localhost";
 	}  
 	this.change.emit({"jobs":[],"charts":{"pie":{"values":[],"labels":[]}}});
+	this.isWorking=true;
 	this.workingEvent.emit(true);
 	this.httpClient.get(backend+'/jobs', { params: data}).subscribe((data)=>{
 	      this.change.emit(data);	      
-	      this.workingEvent.emit(false);	
+	      this.workingEvent.emit(false);		
+	      this.isWorking=false;
 	    });
    }
    
    public async getJobsWithParamLazy(data){
+	if(this.isWorking)return;   
 	var port = window.location.port;  
 	var backend= "";   
 	if(port=="4200"){
 		backend="http://localhost";
 	}  
+	this.jobs=[];
 	this.change.emit({"jobs":[],"charts":{"pie":{"values":[],"labels":[]}}});
-	this.workingEvent.emit(true);		
+	this.workingEvent.emit(true);        
+	this.isWorking=true;	
 	this.names=this.configloaderService.getAllNames();	
 	
 	await Promise.all(this.callHttp(data,this.names,backend))
 			.then(data=>{
 				this.workingEvent.emit(false);
+				this.isWorking=false;	
 			});
    }
    
