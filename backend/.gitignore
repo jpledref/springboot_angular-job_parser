@@ -32,4 +32,4 @@ build/
 .vscode/
 
 ### Logging ###
-fortunes.log
+application.log
