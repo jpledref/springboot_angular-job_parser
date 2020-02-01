@@ -6,44 +6,44 @@ import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-jobs',
-  templateUrl: './jobs.component.html',  	
+  templateUrl: './jobs.component.html',
   styleUrls: ['./jobs.component.css']
 })
 export class JobsComponent implements OnInit {
 
   jobs;
   defJobs;
-  displayedColumns: string[] = ['title', 'enterprise', 'description', 'siteSource', 'location', 'salary'];	
-  columnsToDisplay: string[] = this.displayedColumns.slice();	
-  sort:Sort={active:"title",direction:"asc"};	
-	
+  displayedColumns: string[] = ['title', 'enterprise', 'description', 'siteSource', 'location', 'salary'];
+  columnsToDisplay: string[] = this.displayedColumns.slice();
+  sort: Sort = { active: "title", direction: "asc" };
+
   constructor(private apiService: ApiService) { }
 
-  ngOnInit() {	  
-	this.apiService.change.subscribe(data=>{	
-		this.jobs=data.jobs;
-		this.defJobs=data.jobs;
-		this.sortData(this.sort);
-	});
+  ngOnInit() {
+    this.apiService.change.subscribe(data => {
+      this.jobs = data.jobs;
+      this.defJobs = data.jobs;
+      this.sortData(this.sort);
+    });
 
-	this.apiService.append.subscribe(data=>{		
-		var resultArray = this.jobs;
-		data.jobs.forEach(function(obj, index){
-		  resultArray.push(data.jobs[index]);
-		});
-		
-		this.jobs=resultArray;
-		this.defJobs=resultArray;
-		this.sortData(this.sort);
-	});	
-	
+    this.apiService.append.subscribe(data => {
+      var resultArray = this.jobs;
+      data.jobs.forEach(function(obj, index) {
+        resultArray.push(data.jobs[index]);
+      });
+
+      this.jobs = resultArray;
+      this.defJobs = resultArray;
+      this.sortData(this.sort);
+    });
+
   }
-  
-   sortData(sort: Sort) {
-    if(this.jobs===undefined)return;
-    this.sort=sort;		   
+
+  sortData(sort: Sort) {
+    if (this.jobs === undefined) return;
+    this.sort = sort;
     const data = this.jobs.slice();
-    if (!sort.active || sort.direction === '') {
+    if ((!sort.active || sort.direction === '') && this.jobs != this.defJobs) {
       this.jobs = this.defJobs;
       return;
     }
@@ -61,18 +61,18 @@ export class JobsComponent implements OnInit {
       }
     });
   }
-    
+
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) { 	
-	if(typeof(a) == "string" && typeof(b) == "string"){
-		if((a==null || a=="") && (b!=null && b!="")){return 1;}
-		if((a==null || a=="") && (b==null || b=="")){return 0;}
-		if((b==null || b=="") && (a!=null || a!="")){return -1;}			
-		return (a.toUpperCase() < b.toUpperCase() ? -1 : 1) * (isAsc ? 1 : -1);
-	}else if(typeof(a) == "number" && typeof(b) == "number"){
-		 return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-	}else{
-		 return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-	} 
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  if (typeof (a) == "string" && typeof (b) == "string") {
+    if ((a == null || a == "") && (b != null && b != "")) { return 1; }
+    if ((a == null || a == "") && (b == null || b == "")) { return 0; }
+    if ((b == null || b == "") && (a != null || a != "")) { return -1; }
+    return (a.toUpperCase() < b.toUpperCase() ? -1 : 1) * (isAsc ? 1 : -1);
+  } else if (typeof (a) == "number" && typeof (b) == "number") {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  } else {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
 }
