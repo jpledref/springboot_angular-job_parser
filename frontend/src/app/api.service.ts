@@ -1,6 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ConfigloaderService } from './configloader.service';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +42,13 @@ export class ApiService {
 
   public async getJobsWithParamLazy(data) {
     if (this.isWorking) return;
-    var port = window.location.port;
-    var backend = "";
-    if (port == "4200") {
-      backend = "http://localhost";
+    var location = window.location;
+    var backend = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+    var port = location.port;
+    if (port == "4200" || port == "4000" || backend == "about://") {
+      backend = environment.api_url;
+    } else {
+      backend = backend + environment.api_root;
     }
     this.jobs = [];
     this.change.emit({ "jobs": [], "charts": { "pie": { "values": [], "labels": [] } } });

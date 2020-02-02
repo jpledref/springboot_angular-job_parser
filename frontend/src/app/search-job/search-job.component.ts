@@ -10,27 +10,25 @@ import { ConfigloaderService } from '../configloader.service';
 })
 export class SearchJobComponent implements OnInit {
 
-	formdata: FormGroup;
+  formdata: FormGroup;
 
-	constructor(private formBuilder: FormBuilder,private apiService: ApiService,private configloaderService: ConfigloaderService	) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private configloaderService: ConfigloaderService) { }
 
-	ngOnInit() {
-		this.initForm();			
-		
-		this.configloaderService.loaded.subscribe(data=>{	
-			this.onSubmit();
-		});		
-	}
-	  
-	onSubmit(){
-		this.apiService.getJobsWithParamLazy(this.formdata.value);
-	}
+  ngOnInit() {
+    this.initForm();
+    this.configloaderService.loaded.subscribe(data => {
+      this.onSubmit();
+    });
+  }
 
-	initForm() {
-	   this.formdata = this.formBuilder.group({
-		 what: 'java',
-		 where: 'lyon'
-	      });
-	  }
+  onSubmit() {
+    this.apiService.getJobsWithParamLazy(this.formdata.value);
+  }
+
+  initForm() {
+    this.formdata = this.formBuilder.group({
+      what: 'java',
+      where: 'lyon'
+    });
+  }
 }
-

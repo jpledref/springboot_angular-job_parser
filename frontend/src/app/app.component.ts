@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfigloaderService } from './configloader.service';
 
 @Component({
@@ -6,14 +6,19 @@ import { ConfigloaderService } from './configloader.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Angular-Job-Parser';
-	
-	constructor(configloaderService: ConfigloaderService) {
-		configloaderService.init();
-		
-	}
-	
-	
-	
+
+  configloaderService;
+
+  ngOnInit() {
+    //console.log("ngInit");
+    //this.configloaderService.init();
+  }
+
+  constructor(configloaderService: ConfigloaderService) {
+    this.configloaderService = configloaderService;
+    configloaderService.init();
+  }
+
 }
