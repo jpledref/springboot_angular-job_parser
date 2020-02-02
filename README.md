@@ -26,7 +26,9 @@ Springboot_angular-job_parser is an application whose purpose is to aggregate se
 - [ ] tag cloud
 - [ ] merge build
 - [ ] Dockerize
-- [ ] SEO
+- [x] SSR
+- [ ] Sitemap
+- [ ] Routing
 - [ ] images for job boards 
 - [ ] home page with photo
 - [ ] gps city
@@ -66,5 +68,13 @@ ng build --prod
 #TODO: Bring angular compilation into maven build process
 cp frontend/dist/Angular-Job-Parser/* backend/src/main/resources/static 
 mvn clean install
+```
+
+
+
+## Build & Run SSR version
+
+```
+npm run build:ssr && npm run serve:ssr
 ```
 
