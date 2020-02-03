@@ -22,9 +22,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BignumberComponent } from './bignumber/bignumber.component';
 import { ConfigloaderService } from './configloader.service';
+import { SeoService } from './seo.service';
 
 import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-transfer-http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { Routes, RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -54,8 +56,9 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
     MatSortModule,
     TransferHttpModule,
     TransferHttpCacheModule,
+    RouterModule.forRoot([]),
   ],
-  providers: [ConfigloaderService, TransferHttpService],
+  providers: [ConfigloaderService, TransferHttpService, SeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

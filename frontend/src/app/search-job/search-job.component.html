@@ -1,28 +1,25 @@
 <!-- Search form -->
 <div id="searchBar">
-	<form class="" [formGroup]="formdata" (ngSubmit)="onSubmit()" novalidate>			
-		<div fxLayout="row" fxLayoutAlign="start center" style="" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start none" >
+	<form class="" [formGroup]="formdata" (ngSubmit)="onSubmit()" novalidate>
+		<div fxLayout="row" fxLayoutAlign="start center" style="" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start none">
 			<div fxFlex="10%" fxFlex.lt-md="100%">
-				<mat-form-field style="" >
-					<input matInput placeholder="What" ng-model="what"  formControlName="what" autocomplete="off" >
+				<mat-form-field style="">
+					<input matInput placeholder="Poste recherché" ng-model="what" formControlName="what" autocomplete="off">
 				</mat-form-field>
 			</div>
 			<div fxFlex="10%" fxFlex.lt-md="100%">
-				<mat-form-field style="" >
-					<input matInput placeholder="Where" ng-model="where" formControlName="where" autocomplete="off" >
+				<mat-form-field style="">
+					<input matInput placeholder="Lieu" ng-model="where" formControlName="where" autocomplete="off">
 				</mat-form-field>
 			</div>
 			<div>
-				<button type="submit" mat-raised-button style="margin-left:20px;">Search</button>	
+				<button type="submit" mat-raised-button style="margin-left:20px;">Search</button>
 			</div>
 			<div>
-				<div style="margin-left:20px;">				
-					<app-spinner style="display:inline-flex;"></app-spinner>		
+				<div style="margin-left:20px;">
+					<app-spinner style="display:inline-flex;"></app-spinner>
 				</div>
 			</div>
-		</div>		
-	</form>  
+		</div>
+	</form>
 </div>
-
-
-

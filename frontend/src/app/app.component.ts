@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigloaderService } from './configloader.service';
+import { SeoService } from './seo.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,10 @@ export class AppComponent implements OnInit {
     //this.configloaderService.init();
   }
 
-  constructor(configloaderService: ConfigloaderService) {
+  constructor(configloaderService: ConfigloaderService, seoService: SeoService) {
     this.configloaderService = configloaderService;
     configloaderService.init();
+    //seoService.init();
   }
 
 }
