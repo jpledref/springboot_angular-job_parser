@@ -116,5 +116,45 @@
 			{"name":"jobLocation","value":"li.offre-location"},			
 			{"name":"jobLink","value":"h2.offre-title > a"}
 		]			
+	},	
+	{
+		"name":"jobijoba",
+		"home":"https://www.jobijoba.com",
+		"search":"https://www.jobijoba.com/fr/query/?",
+		"method":"GET",
+		"cssListSelector":".offers",
+		"critereas":[
+			{"name":"where","value":"where"},
+			{"name":"what","value":"what"}
+		],
+		"cssItemSelector":[			
+			{"name":"itemBox","value":"div.offer"},
+			{"name":"jobTitle","value":"span.c_link_annonces"},
+			{"name":"jobSalary","value":""},			
+			{"name":"jobEnterprise","value":"span:has(span > span.icon-apartment)"},
+			{"name":"jobDescription","value":"div.description"},			
+			{"name":"jobLocation","value":"span:has(span > span.icon-map-marker)"},			
+			{"name":"jobLink","value":"a"}
+		]			
+	},	
+	{
+		"name":"neuvoo",
+		"home":"https://neuvoo.fr",
+		"search":"https://neuvoo.fr/emplois/?",
+		"method":"GET",
+		"cssListSelector":"#nv-jobs",
+		"critereas":[
+			{"name":"where","value":"l"},
+			{"name":"what","value":"k"}
+		],
+		"cssItemSelector":[			
+			{"name":"itemBox","value":"div.card__job"},
+			{"name":"jobTitle","value":"a.card__job-link"},
+			{"name":"jobSalary","value":""},			
+			{"name":"jobEnterprise","value":"div.card__job-empname-label"},
+			{"name":"jobDescription","value":"p.card__job-snippet"},			
+			{"name":"jobLocation","value":"div.card__job-location"},			
+			{"name":"jobLink","value":"a.card__job-link"}
+		]			
 	}
 ]
